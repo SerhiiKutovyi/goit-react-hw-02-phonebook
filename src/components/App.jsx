@@ -6,7 +6,7 @@ import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
-    contacts: [{ id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' }],
+    contacts: [],
   };
 
   formSubmitHandler = data => {
@@ -29,7 +29,7 @@ export class App extends Component {
           <h1>Phonebook</h1>
           <ContactForm onSubmit={this.formSubmitHandler} />
           <h2>Contacts</h2>
-          <ContactList contacts={this.state.contacts} createUsers={ } />
+          <ContactList contacts={this.state.contacts} />
         </Section>
       </>
     );

@@ -1,12 +1,13 @@
-export const ContactList = ({ id, name, number, createUsers }) => {
+export const ContactList = ({ contacts }) => {
+  console.log(contacts);
+
   return (
-    <ul>
-      <li>
-        {name}
-        {() => {
-          createUsers();
-        }}
-      </li>
-    </ul>
+    <>
+      <ul>
+        {contacts.map(user => (
+          <li kei={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </>
   );
 };
