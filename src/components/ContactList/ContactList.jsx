@@ -1,19 +1,25 @@
-import { nanoid } from 'nanoid';
+import { ContactStyled } from './ContactList.style';
 
-export const ContactList = ({ contacts }) => {
-  const newId = {
-    id: nanoid(),
-  };
-
-  console.log(contacts);
-
+export const ContactList = ({ contacts, deleteUsers }) => {
   return (
     <>
-      <ul key={newId}>
-        {contacts.map(user => (
-          <li key={newId}>{user.name}</li>
+      <ContactStyled>
+        {contacts.map(({ name, id, number }) => (
+          <li key={id}>
+            <p>
+              {name}: {number}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                deleteUsers(id);
+              }}
+            >
+              Delete
+            </button>
+          </li>
         ))}
-      </ul>
+      </ContactStyled>
     </>
   );
 };
