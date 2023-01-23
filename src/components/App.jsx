@@ -1,48 +1,49 @@
 import styled from 'styled-components';
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
+import { ContactForm } from './ContactForm/ContactForm ';
+import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
-    contacts: [],
-    name: '',
+    contacts: [{ id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' }],
+  };
+
+  formSubmitHandler = data => {
+    const newUser = {
+      id: nanoid(),
+      ...data,
+    };
+
+    this.setState(prevState => {
+      return {
+        contacts: [...prevState.contacts, newUser],
+      };
+    });
   };
 
   render() {
     return (
       <>
         <Section>
-          <h2>PhoneBook</h2>
-          <p>Name</p>
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-          <button type="button"> Add contact</button>
-        </Section>
-        <section>
+          <h1>Phonebook</h1>
+          <ContactForm onSubmit={this.formSubmitHandler} />
           <h2>Contacts</h2>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </section>
+          <ContactList contacts={this.state.contacts} createUsers={ } />
+        </Section>
       </>
     );
   }
 }
 
-const Section = styled.section`
+const Section = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  p {
-    margin-bottom: 20px;
-  }
-  h2 {
+
+  h1 {
+    margin-bottom: 40px;
+
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
@@ -52,13 +53,7 @@ const Section = styled.section`
     color: #000000;
   }
 
-  input {
-    max-width: 200px;
-
-    margin-bottom: 20px;
-  }
-
-  button {
-    max-width: 100px;
+  h2 {
+    margin-bottom: 40px;
   }
 `;
