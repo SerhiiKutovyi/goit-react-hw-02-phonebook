@@ -46,7 +46,11 @@ export class App extends Component {
   };
 
   deleteUsers = userId => {
-    // console.log(userId);
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(user => user.id !== userId),
+      };
+    });
   };
 
   render() {
@@ -59,7 +63,7 @@ export class App extends Component {
           <Filter filter={this.state.filter} click={this.filterUsers} />
           <ContactList
             contacts={this.verification()}
-            deleteUsers={this.deleteUsers()}
+            deleteUsers={this.deleteUsers}
           />
         </Section>
       </>
