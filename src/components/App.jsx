@@ -30,11 +30,23 @@ export class App extends Component {
   };
 
   filterUsers = event => {
-    console.log(event.target.value);
+    this.setState({ filter: event.target.value });
+  };
+
+  verification = () => {
+    if (!this.state.filter) {
+      return this.state.contacts;
+    } else {
+      return this.state.contacts.filter(
+        user =>
+          user.name.includes(this.state.filter) ||
+          user.number.includes(this.state.filter)
+      );
+    }
   };
 
   deleteUsers = userId => {
-    console.log(userId);
+    // console.log(userId);
   };
 
   render() {
@@ -46,7 +58,7 @@ export class App extends Component {
           <h2>Contacts</h2>
           <Filter filter={this.state.filter} click={this.filterUsers} />
           <ContactList
-            contacts={this.state.contacts}
+            contacts={this.verification()}
             deleteUsers={this.deleteUsers()}
           />
         </Section>
