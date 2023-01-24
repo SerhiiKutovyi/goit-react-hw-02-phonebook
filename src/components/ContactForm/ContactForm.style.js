@@ -27,6 +27,8 @@ export const FormStyled = styled.form`
 
   button {
     max-width: 100px;
+    background-color: blue;
+    color: white;
   }
 
   li {

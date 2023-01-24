@@ -6,4 +6,13 @@ export const ContactStyled = styled.ul`
     display: flex;
     margin-bottom: 10px;
   }
+
+  p {
+    width: 300px;
+  }
+
+  button {
+    background-color: coral;
+    color: white;
+  }
 `;
