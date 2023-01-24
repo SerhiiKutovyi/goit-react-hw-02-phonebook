@@ -25,7 +25,6 @@ export class App extends Component {
           contacts: [...prevState.contacts, newUser],
         };
       });
-      return;
     }
   };
 
@@ -34,13 +33,14 @@ export class App extends Component {
   };
 
   verification = () => {
-    if (!this.state.filter) {
-      return this.state.contacts;
+    const { filter, contacts } = this.state;
+    if (!filter) {
+      return contacts;
     } else {
-      return this.state.contacts.filter(
+      return contacts.filter(
         user =>
-          user.name.includes(this.state.filter) ||
-          user.number.includes(this.state.filter)
+          user.name.toLowerCase().includes(filter.toLowerCase()) ||
+          user.number.includes(filter)
       );
     }
   };
